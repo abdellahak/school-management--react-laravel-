@@ -4,6 +4,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod"
+import { axiosClient } from "@/api/axios";
 
 const formSchema = z.object({
   email: z.string().email().min(2).max(50),
@@ -14,13 +15,14 @@ export default function StudentLogin() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email : "",
-      password : ""
+      email : "abdellah@gmail.com",
+      password : "abdellah"
     }
   });
 
-  function onSubmit() {
-    console.log(values);
+  async function onSubmit(values) {
+    const data = await axiosClient.post('/login', values);
+    console.log(data);
   }
 
   return (
