@@ -4,8 +4,8 @@ import { useState } from "react";
 export default function Layout() {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <>
-      <header>
+    <div>
+      <header className="container mx-auto">
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link
@@ -67,10 +67,10 @@ export default function Layout() {
           </div>
         </nav>
       </header>
-      <main className="container">
+      <main className="container mx-auto">
         <Outlet />
       </main>
-      <footer>Footer</footer>
-    </>
+      <footer className="container mx-auto">Footer</footer>
+    </div>
   );
 }
