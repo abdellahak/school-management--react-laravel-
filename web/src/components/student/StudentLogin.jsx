@@ -39,9 +39,9 @@ export default function StudentLogin() {
     try {
       const response = await api.post("/login", values);
       console.log(response);
-      if (response.status === 204) {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("user", response.user);
+      if (response.status === 200) {
+        window.localStorage.setItem("token", response.data.token);
+        window.localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/student/dashboard");
       }
     } catch (error) {
@@ -84,7 +84,11 @@ export default function StudentLogin() {
             )}
           />
           <Button className="cursor-pointer" type="submit" disabled={isLoading}>
-            {isLoading ? <Loader2 className="mx-2 my-2 animate-spin"/> : "Submit"}
+            {isLoading ? (
+              <Loader2 className="mx-2 my-2 animate-spin" />
+            ) : (
+              "Submit"
+            )}
           </Button>
         </form>
       </Form>

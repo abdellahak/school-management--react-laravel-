@@ -5,16 +5,29 @@ import Register from "../pages/Register";
 import Users from "../pages/Users";
 import NotFound from "../pages/NotFound";
 import Layout from "../layouts/Layout";
+import GuestLayout from "@/layouts/GuestLayout";
+import StudentDashboardLayout from "@/layouts/StudentDashboardLayout";
+import StudentDashboard from "@/components/student/StudentDashboard";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/login", element: <Login /> },
-      { path: "/student/dashboard", element: <h1>Hi student</h1> },
-      { path: "/register", element: <Register /> },
       { path: "/users", element: <Users /> },
       { path: "/*", element: <NotFound /> },
     ],
   },
+  {
+    element : <GuestLayout/>,
+    children: [
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+    ]
+  },
+  {
+    element : <StudentDashboardLayout/>,
+    children : [
+      { path: "/student/dashboard", element: <StudentDashboard /> },
+    ]
+  }
 ]);
